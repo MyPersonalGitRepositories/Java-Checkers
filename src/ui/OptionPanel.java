@@ -69,7 +69,7 @@ public class OptionPanel extends JPanel {
 		
 		// Initialize the components
 		OptionListener ol = new OptionListener();
-		final String[] playerTypeOpts = {"Human", "Computer", "Network"};
+		final String[] playerTypeOpts = {"Human", "Computer - Easy","Computer - Medium","Computer - Hard"};
 		this.restartBtn = new JButton("Restart");
 		this.player1Opts = new JComboBox<>(playerTypeOpts);
 		this.player2Opts = new JComboBox<>(playerTypeOpts);
@@ -248,12 +248,15 @@ public class OptionPanel extends JPanel {
 		
 		// Determine the type
 		String type = "" + playerOpts.getSelectedItem();
-		if (type.equals("Computer")) {
+		if (type.equals("Computer - Easy")) {
+			player = new ComputerPlayer();
+		} else if (type.equals("Computer - Medium")) {
+			player = new ComputerPlayer();
+		} else if (type.equals("Computer - Hard")) {
 			player = new ComputerPlayer();
 		} else if (type.equals("Network")) {
 			player = new NetworkPlayer();
 		}
-		
 		return player;
 	}
 	
