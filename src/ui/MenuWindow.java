@@ -1,14 +1,18 @@
 package ui;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class MenuWindow {
     public static JFrame frame;
     public static JPanel panel;
-    public static int rezhim;
+    public BufferedImage image;
+    private Image img;
 
     MenuWindow(){
         frame = new JFrame("Шашки");
@@ -17,8 +21,49 @@ public class MenuWindow {
 
         panel = new JPanel();
         panel.setBackground(Color.white);
-        panel.setOpaque(true);
+        panel.setLayout(new BorderLayout());
         frame.add(panel);
+
+        JPanel buttons = new JPanel(new GridLayout(0,1,10,10));
+        buttons.setBackground(Color.white);
+        buttons.setBorder(new EmptyBorder(20,30,20,30));
+
+
+        File f; // Создаём файл
+        f = new File("images.jpg"); // Устанавливаем путь для файла
+        try {
+            img = ImageIO.read(f); // Считываем картинку
+        } catch(IOException ioe) {
+            JOptionPane.showConfirmDialog(null, "Помилка!\n" + ioe.toString(),
+                    "Error!", JOptionPane.PLAIN_MESSAGE);
+            System.exit(0);
+        }
+        JLabel jl = new JLabel(new ImageIcon(img));
+//        panel.setLayout(new BorderLayout());
+        panel.add(jl,BorderLayout.NORTH);
+
+        JButton infoButton = new JButton("Допомога");
+        infoButton.addActionListener(e -> {
+            JOptionPane.showMessageDialog(null,"Якщо у вас виникли будь-які проблеми з роботою програми \"Шашки\" \n" +
+                    " ви можете звернутися за допомогою до її автора: Підлісного Максима" +
+                    "  \n за контактими: \n" + "\n Почта: p.maxsym@gmail.com " + "\n Телефон: +1234567890 \n");
+        });
+
+
+        JButton licenseButton = new JButton("Ліцензія");
+        licenseButton.addActionListener(e -> {
+            JOptionPane.showMessageDialog(null, "Програмне забезпечення: \"Шашки\"\nАвтор: Підлісний Максим Віталійович\n\n                   " +
+                    "                                                                     " +
+                    "ЛІЦЕНЗІЯ\nЦією Ліцензією засвідчується право ЛІЦЕНЗІАТА на використання програмного забезпечення \"Шашки\".\n ");
+        });
+
+
+        JButton exitButton = new JButton("Вихід");
+        exitButton.addActionListener(e -> {
+            if (JOptionPane.showConfirmDialog(null, "Ви дійсно впевнені, що хочете закрити вікно програми?", "Вихід", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                System.exit(0);
+            }
+        });
 
         JButton startButton = new JButton("Почати");
         startButton.addActionListener(e -> {
@@ -35,7 +80,13 @@ public class MenuWindow {
                     window.setDefaultCloseOperation(CheckersWindow.EXIT_ON_CLOSE);
                     window.setVisible(true);
         });
-        panel.add(startButton, BorderLayout.CENTER);
+
+        buttons.add(startButton);
+        buttons.add(licenseButton);
+        buttons.add(infoButton);
+        buttons.add(exitButton);
+        panel.add(buttons,BorderLayout.CENTER);
         frame.setVisible(true);
     }
+
 }

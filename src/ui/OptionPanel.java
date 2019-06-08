@@ -92,10 +92,10 @@ public class OptionPanel extends JPanel {
 		
 		// Add components to the layout
 		top.add(restartBtn);
-		middle.add(new JLabel("(black) Player 1: "));
+		middle.add(new JLabel("Player 1 (white): "));
 		middle.add(player1Opts);
 		middle.add(player1Btn);
-		bottom.add(new JLabel("(white) Player 2: "));
+		bottom.add(new JLabel("Player 2 (black): "));
 		bottom.add(player2Opts);
 		bottom.add(player2Btn);
 		this.add(top);
