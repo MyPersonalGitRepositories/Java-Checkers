@@ -243,7 +243,7 @@ public class CheckerBoard extends JButton {
 					g.fillOval(cx + 1, cy + 2, CHECKER_SIZE, CHECKER_SIZE);
 					g.setColor(Color.LIGHT_GRAY);
 					g.drawOval(cx + 1, cy + 2, CHECKER_SIZE, CHECKER_SIZE);
-					g.setColor(Color.WHITE);
+					g.setColor(Color.BLACK);
 					g.fillOval(cx, cy, CHECKER_SIZE, CHECKER_SIZE);
 					g.setColor(Color.LIGHT_GRAY);
 					g.drawOval(cx, cy, CHECKER_SIZE, CHECKER_SIZE);
@@ -251,15 +251,15 @@ public class CheckerBoard extends JButton {
 				
 				// Black king
 				else if (id == Board.BLACK_KING) {
-					g.setColor(Color.LIGHT_GRAY);
+					g.setColor(Color.DARK_GRAY);
 					g.fillOval(cx + 1, cy + 2, CHECKER_SIZE, CHECKER_SIZE);
-					g.setColor(Color.DARK_GRAY);
-					g.drawOval(cx + 1, cy + 2, CHECKER_SIZE, CHECKER_SIZE);
 					g.setColor(Color.LIGHT_GRAY);
-					g.fillOval(cx, cy, CHECKER_SIZE, CHECKER_SIZE);
+					g.drawOval(cx + 1, cy + 2, CHECKER_SIZE, CHECKER_SIZE);
 					g.setColor(Color.DARK_GRAY);
+					g.fillOval(cx, cy, CHECKER_SIZE, CHECKER_SIZE);
+					g.setColor(Color.LIGHT_GRAY);
 					g.drawOval(cx, cy, CHECKER_SIZE, CHECKER_SIZE);
-					g.setColor(Color.WHITE);
+					g.setColor(Color.BLACK);
 					g.fillOval(cx - 1, cy - 2, CHECKER_SIZE, CHECKER_SIZE);
 				}
 
@@ -269,7 +269,7 @@ public class CheckerBoard extends JButton {
 					g.fillOval(cx + 1, cy + 2, CHECKER_SIZE, CHECKER_SIZE);
 					g.setColor(Color.DARK_GRAY);
 					g.drawOval(cx + 1, cy + 2, CHECKER_SIZE, CHECKER_SIZE);
-					g.setColor(Color.BLACK);
+					g.setColor(Color.WHITE);
 					g.fillOval(cx, cy, CHECKER_SIZE, CHECKER_SIZE);
 					g.setColor(Color.DARK_GRAY);
 					g.drawOval(cx, cy, CHECKER_SIZE, CHECKER_SIZE);
@@ -277,15 +277,15 @@ public class CheckerBoard extends JButton {
 				
 				// White king
 				else if (id == Board.WHITE_KING) {
-					g.setColor(Color.DARK_GRAY);
+					g.setColor(Color.LIGHT_GRAY);
 					g.fillOval(cx + 1, cy + 2, CHECKER_SIZE, CHECKER_SIZE);
-					g.setColor(Color.LIGHT_GRAY);
-					g.drawOval(cx + 1, cy + 2, CHECKER_SIZE, CHECKER_SIZE);
 					g.setColor(Color.DARK_GRAY);
-					g.fillOval(cx, cy, CHECKER_SIZE, CHECKER_SIZE);
+					g.drawOval(cx + 1, cy + 2, CHECKER_SIZE, CHECKER_SIZE);
 					g.setColor(Color.LIGHT_GRAY);
+					g.fillOval(cx, cy, CHECKER_SIZE, CHECKER_SIZE);
+					g.setColor(Color.DARK_GRAY);
 					g.drawOval(cx, cy, CHECKER_SIZE, CHECKER_SIZE);
-					g.setColor(Color.BLACK);
+					g.setColor(Color.WHITE);
 					g.fillOval(cx - 1, cy - 2, CHECKER_SIZE, CHECKER_SIZE);
 				}
 				
@@ -299,10 +299,10 @@ public class CheckerBoard extends JButton {
 		}
 		
 		// Draw the player turn sign
-		String msg = game.isP1Turn()? "Player 1's (white) turn" : "Player 2's (black) turn";
+		String msg = game.isP1Turn()? "Player 1's (black) turn" : "Player 2's (white) turn";
 		int width = g.getFontMetrics().stringWidth(msg);
-		Color back = game.isP1Turn()? Color.WHITE : Color.BLACK;
-		Color front = game.isP1Turn()? Color.BLACK : Color.WHITE;
+		Color back = game.isP1Turn()? Color.BLACK : Color.WHITE;
+		Color front = game.isP1Turn()? Color.WHITE : Color.BLACK;
 		g.setColor(back);
 		g.fillRect(W / 2 - width / 2 - 5, OFFSET_Y + 8 * BOX_SIZE + 2,
 				width + 10, 15);

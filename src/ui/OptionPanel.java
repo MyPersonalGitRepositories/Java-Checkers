@@ -11,10 +11,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import model.ComputerPlayer;
 import model.HumanPlayer;
@@ -38,6 +35,10 @@ public class OptionPanel extends JPanel {
 	
 	/** The button that when clicked, restarts the game. */
 	private JButton restartBtn;
+
+	private JButton toMenu;
+
+	private JButton rules;
 	
 	/** The combo box that changes what type of player player 1 is. */
 	private JComboBox<String> player1Opts;
@@ -74,11 +75,23 @@ public class OptionPanel extends JPanel {
 		this.player1Opts = new JComboBox<>(playerTypeOpts);
 		this.player2Opts = new JComboBox<>(playerTypeOpts);
 		this.restartBtn.addActionListener(ol);
+		toMenu = new JButton("Меню");
+		toMenu.addActionListener(e -> {
+		    window.setVisible(false);
+            SwingUtilities.invokeLater(MenuWindow::new);
+        });
+		rules = new JButton("Правила");
+		rules.addActionListener(e -> {
+		    JOptionPane.showMessageDialog(null,"Дошка 8х8, в початковій позиції у кожного гравця по 12 шашок, розташованих в перших трьох рядах на чорних клітинах. Перший хід роблять чорні.\n" +
+                    "\n" +
+                    "Прості шашки можуть ходити по діагоналі на одну клітину вперед і бити тільки вперед, дамка може ходити на одну клітку по діагоналі вперед і назад і бити через одну клітку в будь-яку сторону.\nБити обов'язково, якщо є кілька шляхів, гравець може вибрати будь-який.");
+        });
 		this.player1Opts.addActionListener(ol);
 		this.player2Opts.addActionListener(ol);
 		JPanel top = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JPanel middle = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JPanel bottom = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		JPanel right = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		this.player1Net = new NetworkWindow(ol);
 		this.player1Net.setTitle("Player 1 - Configure Network");
 		this.player2Net = new NetworkWindow(ol);
@@ -92,15 +105,19 @@ public class OptionPanel extends JPanel {
 		
 		// Add components to the layout
 		top.add(restartBtn);
-		middle.add(new JLabel("Player 1 (white): "));
+		middle.add(new JLabel("Player 1 (black): "));
 		middle.add(player1Opts);
 		middle.add(player1Btn);
-		bottom.add(new JLabel("Player 2 (black): "));
+		bottom.add(new JLabel("Player 2 (white): "));
 		bottom.add(player2Opts);
 		bottom.add(player2Btn);
+		right.add(rules);
+		right.add(toMenu);
+
 		this.add(top);
 		this.add(middle);
 		this.add(bottom);
+		this.add(right);
 	}
 
 	public CheckersWindow getWindow() {
