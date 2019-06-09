@@ -110,8 +110,8 @@ public class OptionPanel extends JPanel {
 		bottom.add(new JLabel("Player 2 (white): "));
 		bottom.add(player2Opts);
 		bottom.add(player2Btn);
-		right.add(rules);
 		right.add(toMenu);
+        right.add(rules);
 
 		this.add(top);
 		this.add(middle);
