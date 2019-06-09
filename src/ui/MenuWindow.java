@@ -15,7 +15,7 @@ public class MenuWindow {
     private Image img;
 
     MenuWindow(){
-        frame = new JFrame("Шашки");
+        frame = new JFrame("Checkers");
         frame.setSize(new Dimension(500,600));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -34,7 +34,7 @@ public class MenuWindow {
         try {
             img = ImageIO.read(f); // Считываем картинку
         } catch(IOException ioe) {
-            JOptionPane.showConfirmDialog(null, "Помилка!\n" + ioe.toString(),
+            JOptionPane.showConfirmDialog(null, "Error!\n" + ioe.toString(),
                     "Error!", JOptionPane.PLAIN_MESSAGE);
             System.exit(0);
         }
@@ -42,30 +42,31 @@ public class MenuWindow {
 //        panel.setLayout(new BorderLayout());
         panel.add(jl,BorderLayout.NORTH);
 
-        JButton infoButton = new JButton("Допомога");
+        JButton infoButton = new JButton("Help");
         infoButton.addActionListener(e -> {
-            JOptionPane.showMessageDialog(null,"Якщо у вас виникли будь-які проблеми з роботою програми \"Шашки\" \n" +
-                    " ви можете звернутися за допомогою до її автора: Підлісного Максима" +
-                    "  \n за контактими: \n" + "\n Почта: p.maxsym@gmail.com " + "\n Телефон: +1234567890 \n");
+            JOptionPane.showMessageDialog(null, "\n" +
+                    "If you have any problems with the program \"Checkers\" \n" +
+                    " you can ask for help from its author: Maksym Pidlisnyi" +
+                    "  \n by contact: \n" + "\n E-mail: p.maxsym@gmail.com " + "\n Phone: +1234567890 \n");
         });
 
 
-        JButton licenseButton = new JButton("Ліцензія");
+        JButton licenseButton = new JButton("License");
         licenseButton.addActionListener(e -> {
-            JOptionPane.showMessageDialog(null, "Програмне забезпечення: \"Шашки\"\nАвтор: Підлісний Максим Віталійович\n\n                   " +
-                    "                                                                     " +
-                    "ЛІЦЕНЗІЯ\nЦією Ліцензією засвідчується право ЛІЦЕНЗІАТА на використання програмного забезпечення \"Шашки\".\n ");
+            JOptionPane.showMessageDialog(null, "Software: \"Checkers\"\nAuthor: Maksym Pidlisnyi\n\n                   " +
+                    "                                   " +
+                    "LICENSE\nThis License certifies the right to use the software to LICENSOR  \"Checkers\".\n ");
         });
 
 
-        JButton exitButton = new JButton("Вихід");
+        JButton exitButton = new JButton("Exit");
         exitButton.addActionListener(e -> {
-            if (JOptionPane.showConfirmDialog(null, "Ви дійсно впевнені, що хочете закрити вікно програми?", "Вихід", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            if (JOptionPane.showConfirmDialog(null, "Are you sure you want to close the app?", "Exit", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 System.exit(0);
             }
         });
 
-        JButton startButton = new JButton("Почати");
+        JButton startButton = new JButton("Start");
         startButton.addActionListener(e -> {
                     frame.setVisible(false);
                     try {

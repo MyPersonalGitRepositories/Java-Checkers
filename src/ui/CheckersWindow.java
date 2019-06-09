@@ -6,15 +6,13 @@
 
 package ui;
 
-import java.awt.BorderLayout;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 import model.Player;
 import network.CheckersNetworkHandler;
 import network.ConnectionListener;
 import network.Session;
+
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * The {@code CheckersWindow} class is responsible for managing a window. This
@@ -32,7 +30,7 @@ public class CheckersWindow extends JFrame {
 	public static final int DEFAULT_HEIGHT = 600;
 	
 	/** The default title for the checkers window. */
-	public static final String DEFAULT_TITLE = "Шашки";
+    public static final String DEFAULT_TITLE = "Checkers";
 	
 	/** The checker board component playing the updatable game. */
 	private CheckerBoard board;

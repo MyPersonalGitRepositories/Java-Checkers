@@ -6,13 +6,6 @@
 
 package ui;
 
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.*;
-
 import model.ComputerPlayer;
 import model.HumanPlayer;
 import model.NetworkPlayer;
@@ -21,6 +14,11 @@ import network.CheckersNetworkHandler;
 import network.Command;
 import network.ConnectionListener;
 import network.Session;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * The {@code OptionPanel} class provides a user interface component to control
@@ -70,21 +68,22 @@ public class OptionPanel extends JPanel {
 		
 		// Initialize the components
 		OptionListener ol = new OptionListener();
-		final String[] playerTypeOpts = {"Human", "Computer - Easy","Computer - Medium","Computer - Hard"};
+		final String[] playerTypeOpts = {"Human", "Computer - Easy", "Computer - Medium", "Computer - Hard", "Computer - Very Hard", "Computer - Insane"};
 		this.restartBtn = new JButton("Restart");
 		this.player1Opts = new JComboBox<>(playerTypeOpts);
 		this.player2Opts = new JComboBox<>(playerTypeOpts);
 		this.restartBtn.addActionListener(ol);
-		toMenu = new JButton("Меню");
+		toMenu = new JButton("Menu");
 		toMenu.addActionListener(e -> {
 		    window.setVisible(false);
             SwingUtilities.invokeLater(MenuWindow::new);
         });
-		rules = new JButton("Правила");
+		rules = new JButton("Rules");
 		rules.addActionListener(e -> {
-		    JOptionPane.showMessageDialog(null,"Дошка 8х8, в початковій позиції у кожного гравця по 12 шашок, розташованих в перших трьох рядах на чорних клітинах. Перший хід роблять чорні.\n" +
-                    "\n" +
-                    "Прості шашки можуть ходити по діагоналі на одну клітину вперед і бити тільки вперед, дамка може ходити на одну клітку по діагоналі вперед і назад і бити через одну клітку в будь-яку сторону.\nБити обов'язково, якщо є кілька шляхів, гравець може вибрати будь-який.");
+			JOptionPane.showMessageDialog(null, "Board 8x8, in the starting position of each player with 12 checkers, located in the first three rows on black cells.\n" +
+					"The first move is black.\n" +
+					"Simple checkers can walk diagonally to one cell forward and beat only forward, the king can walk on one cell diagonally forward and back and beat through one cage in either direction.\n" +
+					"Bits are required if there are several the way the player can choose any.\n");
         });
 		this.player1Opts.addActionListener(ol);
 		this.player2Opts.addActionListener(ol);
@@ -262,7 +261,7 @@ public class OptionPanel extends JPanel {
 		if (playerOpts == null) {
 			return player;
 		}
-		
+
 		// Determine the type
 		String type = "" + playerOpts.getSelectedItem();
 		if (type.equals("Computer - Easy")) {
@@ -270,6 +269,10 @@ public class OptionPanel extends JPanel {
 		} else if (type.equals("Computer - Medium")) {
 			player = new ComputerPlayer();
 		} else if (type.equals("Computer - Hard")) {
+			player = new ComputerPlayer();
+		} else if (type.equals("Computer - Very Hard")) {
+			player = new ComputerPlayer();
+		} else if (type.equals("Computer - Insane")) {
 			player = new ComputerPlayer();
 		} else if (type.equals("Network")) {
 			player = new NetworkPlayer();
