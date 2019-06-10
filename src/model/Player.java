@@ -1,5 +1,5 @@
 /* Name: Player
- * Author: Devon McGrath
+ * Author: Maksym Pidlisny
  * Description: This class represents a player of the system.
  */
 

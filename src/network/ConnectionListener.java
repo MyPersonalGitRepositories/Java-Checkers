@@ -1,5 +1,5 @@
 /* Name: ConnectionListener
- * Author: Devon McGrath
+ * Author: Maksym Pidlisny
  * Description: This class acts as a server and listens for connections on the
  * specified port.
  */

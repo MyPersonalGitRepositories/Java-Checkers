@@ -1,5 +1,5 @@
 /* Name: CheckerBoard
- * Author: Devon McGrath
+ * Author: Maksym Pidlisny
  * Description: This class is the graphical user interface representation of
  * a checkers game. It is responsible for drawing the checker board and
  * allowing moves to be made. It does not provide a method to allow the user to
@@ -8,28 +8,17 @@
 
 package ui;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.RenderingHints;
+import model.*;
+import moveLogic.MoveGenerator;
+import network.Command;
+import network.Session;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.JButton;
-import javax.swing.Timer;
-
-import logic.MoveGenerator;
-import model.Board;
-import model.Game;
-import model.HumanPlayer;
-import model.NetworkPlayer;
-import model.Player;
-import network.Command;
-import network.Session;
 
 /**
  * The {@code CheckerBoard} class is a graphical user interface component that
@@ -135,10 +124,10 @@ public class CheckerBoard extends JButton {
 		});
 		this.timer.start();
 	}
-	
-	public void updateNetwork() {
-		
-		// Get the relevant sessions to send to
+
+    public void updateNetwork() {
+
+        // Get the relevant sessions to send to
 		List<Session> sessions = new ArrayList<>();
 		if (player1 instanceof NetworkPlayer) {
 			sessions.add(window.getSession1());
@@ -146,8 +135,8 @@ public class CheckerBoard extends JButton {
 		if (player2 instanceof NetworkPlayer) {
 			sessions.add(window.getSession2());
 		}
-		
-		// Send the game update
+
+        // Send the game update
 		for (Session s : sessions) {
 			sendGameState(s);
 		}
@@ -167,14 +156,14 @@ public class CheckerBoard extends JButton {
 		
 		return true;
 	}
-	
-	public void sendGameState(Session s) {
+
+    public void sendGameState(Session s) {
 
 		if (s == null) {
 			return;
 		}
-		
-		// Create the command and send it
+
+        // Create the command and send it
 		Command update = new Command(Command.COMMAND_UPDATE,
 				s.getSid(), game.getGameState());
 		String host = s.getDestinationHost();

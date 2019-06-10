@@ -3,14 +3,14 @@
  * Description: This class simply validates moves.
  */
 
-package logic;
-
-import java.awt.Point;
-import java.util.ArrayList;
-import java.util.List;
+package moveLogic;
 
 import model.Board;
 import model.Game;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The {@code MoveLogic} class determines what a valid move is. It fully

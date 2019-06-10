@@ -1,5 +1,5 @@
 /* Name: NetworkPlayer
- * Author: Devon McGrath
+ * Author: Maksym Pidlisny
  * Description: This class represents a network player, who may be on a
  * different host.
  */

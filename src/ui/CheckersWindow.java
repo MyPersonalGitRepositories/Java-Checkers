@@ -1,5 +1,5 @@
 /* Name: CheckersWindow
- * Author: Devon McGrath
+ * Author: Maksym Pidlisny
  * Description: This class is a window that is used to play a game of checkers.
  * It also contains a component to change the game options.
  */
@@ -36,10 +36,10 @@ public class CheckersWindow extends JFrame {
 	private CheckerBoard board;
 	
 	private OptionPanel opts;
-	
-	private Session session1;
-	
-	private Session session2;
+
+    private Session session1;
+
+    private Session session2;
 	
 	public CheckersWindow() {
 		this(DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_TITLE);
@@ -65,8 +65,8 @@ public class CheckersWindow extends JFrame {
 		layout.add(board, BorderLayout.CENTER);
 		layout.add(opts, BorderLayout.SOUTH);
 		this.add(layout);
-		
-		// Setup the network listeners
+
+        // Setup the network listeners
 		CheckersNetworkHandler session1Handler, session2Handler;
 		session1Handler = new CheckersNetworkHandler(true, this, board, opts);
 		session2Handler = new CheckersNetworkHandler(false, this, board, opts);
@@ -111,8 +111,8 @@ public class CheckersWindow extends JFrame {
 	public void setGameState(String state) {
 		this.board.getGame().setGameState(state);
 	}
-	
-	public Session getSession1() {
+
+    public Session getSession1() {
 		return session1;
 	}
 

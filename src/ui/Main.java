@@ -1,12 +1,12 @@
 /* Name: Main
- * Author: Devon McGrath
+ * Author: Maksym Pidlisnyi
  * Description: This class contains the main method to create the GUI and
  * start the checkers game.
  * ============================================================================
  * JAVA CHECKERS
  * -------------
- * Author: Devon McGrath (https://github.com/DevonMcGrath)
- * Created: 2018-04-14
+ * Author: Maksym Pidlisny
+ * Created: 09.06.2019
  * Description: This program is a simple implementation of the standard
  * checkers game, with standard rules, in Java.
  * 

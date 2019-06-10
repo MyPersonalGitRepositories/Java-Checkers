@@ -1,5 +1,5 @@
 /* Name: OptionPanel
- * Author: Devon McGrath
+ * Author: Maksym Pidlisny
  * Description: This class is a user interface to interact with a checkers
  * game window.
  */
@@ -68,7 +68,7 @@ public class OptionPanel extends JPanel {
 		
 		// Initialize the components
 		OptionListener ol = new OptionListener();
-		final String[] playerTypeOpts = {"Human", "Computer - Easy", "Computer - Medium", "Computer - Hard", "Computer - Very Hard", "Computer - Insane"};
+		final String[] playerTypeOpts = {"Human", "Computer - Easy", "Computer - Medium", "Computer - Hard", "Computer - Very Hard", "Computer - Insane", "Network"};
 		this.restartBtn = new JButton("Restart");
 		this.player1Opts = new JComboBox<>(playerTypeOpts);
 		this.player2Opts = new JComboBox<>(playerTypeOpts);
@@ -126,7 +126,7 @@ public class OptionPanel extends JPanel {
 	public void setWindow(CheckersWindow window) {
 		this.window = window;
 	}
-	
+
 	public void setNetworkWindowMessage(boolean forPlayer1, String msg) {
 		if (forPlayer1) {
 			this.player1Net.setMessage(msg);
@@ -134,30 +134,30 @@ public class OptionPanel extends JPanel {
 			this.player2Net.setMessage(msg);
 		}
 	}
-	
+
 	public NetworkWindow getNetworkWindow1() {
 		return player1Net;
 	}
-	
+
 	public NetworkWindow getNetworkWindow2() {
 		return player2Net;
 	}
-	
+
 	private void handleNetworkUpdate(NetworkWindow win, ActionEvent e) {
-		
+
 		if (win == null || window == null || e == null) {
 			return;
 		}
-		
+
 		// Get the info
 		int srcPort = win.getSourcePort(), destPort = win.getDestinationPort();
 		String destHost = win.getDestinationHost();
 		boolean isPlayer1 = (win == player1Net);
 		Session s = (isPlayer1? window.getSession1() : window.getSession2());
-		
+
 		// Setting new port to listen on
 		if (e.getID() == NetworkWindow.LISTEN_BUTTON) {
-			
+
 			// Validate the port
 			if (srcPort < 1025 || srcPort > 65535) {
 				win.setMessage("  Error: source port must be"
@@ -168,7 +168,7 @@ public class OptionPanel extends JPanel {
 				win.setMessage("  Error: source port " + srcPort+ " is not available.");
 				return;
 			}
-			
+
 			// Update the server if necessary
 			if (s.getListener().getPort() != srcPort) {
 				s.getListener().stopListening();
@@ -179,10 +179,10 @@ public class OptionPanel extends JPanel {
 			win.setCanUpdateListen(false);
 			win.setCanUpdateConnect(true);
 		}
-		
+
 		// Try to connect
 		else if (e.getID() == NetworkWindow.CONNECT_BUTTON) {
-			
+
 			// Validate the port and host
 			if (destPort < 1025 || destPort > 65535) {
 				win.setMessage("  Error: destination port must be "
@@ -192,18 +192,18 @@ public class OptionPanel extends JPanel {
 			if (destHost == null || destHost.isEmpty()) {
 				destHost = "127.0.0.1";
 			}
-			
+
 			// Connect to the proposed host
 			Command connect = new Command(Command.COMMAND_CONNECT,
 					win.getSourcePort() + "", isPlayer1? "1" : "0");
 			String response = connect.send(destHost, destPort);
-			
+
 			// No response
 			if (response.isEmpty()) {
 				win.setMessage("  Error: could not connect to " + destHost +
 						":" + destPort + ".");
 			}
-			
+
 			// It was a valid client, but refused to connect
 			else if (response.startsWith(CheckersNetworkHandler.RESPONSE_DENIED)) {
 				String[] lines = response.split("\n");
@@ -214,22 +214,22 @@ public class OptionPanel extends JPanel {
 					win.setMessage("  " + errMsg);
 				}
 			}
-			
+
 			// The connection was accepted by the checkers client
 			else if (response.startsWith(CheckersNetworkHandler.RESPONSE_ACCEPTED)){
-				
+
 				// Update the session
 				s.setDestinationHost(destHost);
 				s.setDestinationPort(destPort);
 				win.setMessage("  Successfully started a session with " +
 						destHost + ":" + destPort + ".");
 				win.setCanUpdateConnect(false);
-								
+
 				// Update the SID
 				String[] lines = response.split("\n");
 				String sid = lines.length > 1? lines[1] : "";
 				s.setSid(sid);
-				
+
 				// Get the new game state
 				Command get = new Command(Command.COMMAND_GET, sid, null);
 				response = get.send(destHost, destPort);
@@ -237,7 +237,7 @@ public class OptionPanel extends JPanel {
 				String state = lines.length > 1? lines[1] : "";
 				window.setGameState(state);
 			}
-			
+
 			// General error, maybe the user tried a web server and
 			// the response is an HTTP response
 			else {
@@ -293,7 +293,7 @@ public class OptionPanel extends JPanel {
 			if (window == null) {
 				return;
 			}
-			
+
 			Object src = e.getSource();
 
 			// Handle the user action
@@ -321,32 +321,32 @@ public class OptionPanel extends JPanel {
 			} else if (src == player2Btn) {
 				player2Net.setVisible(true);
 			}
-			
+
 			// Handle a network update
 			else if (src == player1Net || src == player2Net) {
 				handleNetworkUpdate((NetworkWindow) src, e);
 			}
-			
+
 			// Update UI
 			if (btn != null) {
-				
+
 				// Disconnect if required
 				String sid = s.getSid();
 				if (!isNetwork && btn.isVisible() &&
 						sid != null && !sid.isEmpty()) {
-					
+
 					// Send the request
 					Command disconnect = new Command(
 							Command.COMMAND_DISCONNECT, sid);
 					disconnect.send(
 							s.getDestinationHost(), s.getDestinationPort());
-					
+
 					// Update the session
 					s.setSid(null);
 					NetworkWindow win = isP1? player1Net : player2Net;
 					win.setCanUpdateConnect(true);
 				}
-				
+
 				// Update the UI
 				btn.setVisible(isNetwork);
 				btn.repaint();

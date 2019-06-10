@@ -1,5 +1,5 @@
 /* Name: HumanPlayer
- * Author: Devon McGrath
+ * Author: Maksym Pidlisny
  * Description: This class represents a human player (i.e. a user) that can
  * interact with the system.
  */

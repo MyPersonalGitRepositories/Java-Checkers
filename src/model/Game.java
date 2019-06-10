@@ -1,16 +1,16 @@
 /* Name: Game
- * Author: Devon McGrath
+ * Author: Maksym Pidlisny
  * Description: This class represents a game of checkers. It provides a method
  * to update the game state and keep track of who's turn it is.
  */
 
 package model;
 
-import java.awt.Point;
-import java.util.List;
+import moveLogic.MoveGenerator;
+import moveLogic.MoveLogic;
 
-import logic.MoveGenerator;
-import logic.MoveLogic;
+import java.awt.*;
+import java.util.List;
 
 /**
  * The {@code Game} class represents a game of checkers and ensures that all

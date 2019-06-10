@@ -1,17 +1,17 @@
 /* Name: ComputerPlayer
- * Author: Devon McGrath
+ * Author: Maksym Pidlisny
  * Description: This class represents a computer player which can update the
  * game state without user interaction.
  */
 
 package model;
 
-import java.awt.Point;
+import moveLogic.MoveGenerator;
+import moveLogic.MoveLogic;
+
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import logic.MoveGenerator;
-import logic.MoveLogic;
 
 /**
  * The {@code ComputerPlayer} class represents a computer player and updates

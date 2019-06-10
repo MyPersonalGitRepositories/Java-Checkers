@@ -1,5 +1,5 @@
 /* Name: Command
- * Author: Devon McGrath
+ * Author: Maksym Pidlisny
  * Description: This class represents a command that can be sent to another
  * checkers window.
  */

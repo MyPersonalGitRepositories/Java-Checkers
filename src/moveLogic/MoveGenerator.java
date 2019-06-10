@@ -3,13 +3,13 @@
  * Description: This class is responsible for getting possible moves.
  */
 
-package logic;
-
-import java.awt.Point;
-import java.util.ArrayList;
-import java.util.List;
+package moveLogic;
 
 import model.Board;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The {@code MoveGenerator} class provides a method for determining if a given

@@ -1,5 +1,5 @@
 /* Name: Board
- * Author: Devon McGrath
+ * Author: Maksym Pidlisny
  * Description: This class implements an 8x8 checker board. Under standard
  * rules, a checker can only move on black tiles, meaning there are only 32
  * available tiles. It uses three integers to represent the board, giving
@@ -8,7 +8,7 @@
 
 package model;
 
-import java.awt.Point;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,5 +1,5 @@
 /* Name: Session
- * Author: Devon McGrath
+ * Author: Maksym Pidlisny
  * Description: This class represents a session between two clients.
  */
 

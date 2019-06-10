@@ -1,11 +1,11 @@
 /* Name: Move
- * Author: Devon McGrath
+ * Author: Maksym Pidlisny
  * Description: This class represents a move.
  */
 
 package model;
 
-import java.awt.Point;
+import java.awt.*;
 
 /**
  * The {@code Move} class represents a move and contains a weight associated

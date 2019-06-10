@@ -1,5 +1,5 @@
 /* Name: ConnectionHandler
- * Author: Devon McGrath
+ * Author: Maksym Pidlisny
  * Description: This class is responsible for handling a connection to the
  * ConnectionListener.
  */
